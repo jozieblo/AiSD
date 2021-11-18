@@ -1,4 +1,5 @@
 # Lista jednokierunkowa - zadanie 1
+# miałem problem z assert wiec printowalem sobie wynik funkcji za kazdym razem
 
 # class Node:
 #     def __init__(self, value=None):
