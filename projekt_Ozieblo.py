@@ -90,7 +90,7 @@ class GraphPath:
     visited: List[Vertex]
     path: List[Vertex]
 
-    def __init__(self, g: Graph, p: Vertex, k: Vertex):
+    def __init__(self, g: Graph, Vertex_first: Vertex, Vertex_last: Vertex):
         self.tablica_kosztow = dict()
         self.tablica_parents = dict()
         self.visited = list()
@@ -98,11 +98,11 @@ class GraphPath:
         for child in g.adjacencies.keys():
             self.tablica_kosztow[child] = 900000
             self.tablica_parents[child] = None
-        for neighbour in g.adjacencies[p]:
+        for neighbour in g.adjacencies[Vertex_first]:
             self.tablica_kosztow[neighbour.destination] = neighbour.weight
             self.tablica_parents[neighbour.destination] = neighbour.source
-        self.all_weighted_shortest_paths(g, p, k)
-        print(f"Koszt najkrotszej trasy wynosi: {self.tablica_kosztow[k]}")
+        self.all_weighted_shortest_paths(g, Vertex_first, Vertex_last)
+        print(f"Koszt najkrotszej trasy wynosi: {self.tablica_kosztow[Vertex_last]}")
 
     def _dijkstra(self, g: Graph, Vertex_first: Vertex, Vertex_last: Vertex):
         self.visited.append(Vertex_first)
