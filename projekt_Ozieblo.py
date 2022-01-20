@@ -61,9 +61,9 @@ class Graph:
         graff = Graphviz(comment='graf')
         visited = []
         for x in self.adjacencies.keys():
-            self._show_helper(x, graff , visited)
+            self.showw(x, graff , visited)
         graff .render(f'output/{name}', view=True, format="png", quiet_view=False)
-    def _show_helper(self, Vertex, graff , visited: List):
+    def showw(self, Vertex, graff , visited: List):
         if Vertex in visited:
             True
         else:
@@ -75,7 +75,7 @@ class Graph:
                     desc += f"{neighbour.weight}"
                 graff.edge(str(neighbour.source.index), str(neighbour.destination.index), label=desc)
                 if not (neighbour.destination in visited):
-                    self._show_helper(neighbour.destination, graff, visited)
+                    self.showw(neighbour.destination, graff, visited)
 
     def __repr__(self):
         stirng = ""
@@ -123,7 +123,7 @@ class GraphPath:
                     v = None
                     break
                 v = min(koszty_copy, key=koszty_copy.get)
-        while Vertex_last is not None:
+        while Vertex_last != None:
             self.path.append(Vertex_last)
             Vertex_last = self.tablica_parents[Vertex_last]
         self.path.reverse()
@@ -157,10 +157,10 @@ graf.create_vertex(1)
 graf.create_vertex(2)
 graf.create_vertex(3)
 lista_kluczy = [x for x in graf.adjacencies.keys()]
-graf.add(EdgeType(1), lista_kluczy[0], lista_kluczy[1], 8)
-graf.add(EdgeType(1), lista_kluczy[1], lista_kluczy[2], 6)
-graf.add(EdgeType(1), lista_kluczy[1], lista_kluczy[3], 5)
-graf.add(EdgeType(1), lista_kluczy[2], lista_kluczy[3], 4)
+graf.add(EdgeType(2), lista_kluczy[0], lista_kluczy[1], 8)
+graf.add(EdgeType(2), lista_kluczy[1], lista_kluczy[2], 6)
+graf.add(EdgeType(2), lista_kluczy[1], lista_kluczy[3], 5)
+graf.add(EdgeType(2), lista_kluczy[2], lista_kluczy[3], 4)
 graf.show()
 # print(graf)
 gp = GraphPath(graf, lista_kluczy[0], lista_kluczy[3])
